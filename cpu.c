@@ -97,4 +97,5 @@ int main()
           printf("wrong input");
         exit(1);
         }
+    
 }
