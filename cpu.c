@@ -9,7 +9,7 @@ void write()
 {
     FILE *f;
     int v;
-    printf("enter 5 cpu bursts");
+    printf("enter 5 cpu bursts(no negative inputs) : ");
     f=fopen("CPUBURST.txt","w");
     for(int i=0;i<5;i++)
     {
@@ -38,7 +38,14 @@ void print()
 for(int i=0;i<5;i++)
 {
     printf("p%d\t\t%d\t\t%d\t\t%d\n",pro[i].process_id,pro[i].burst_time,pro[i].wait_time,pro[i].turn_time);
+
 }
+printf("execution order : ");
+    for(int i=0;i<5;i++)
+    {
+        printf("P%d\t",pro[i].process_id);
+    }
+    printf("\n");
 }
 void read()
 {
@@ -52,25 +59,30 @@ if(fp==NULL)
 }
 for(i=0;i<5;i++)
 {
-    if(getc(fp)>=0)
-    {
+
     pro[i].burst_time=getw(fp);
     pro[i].process_id=i+1;
-    }
-    else
-    {
-        printf("this file contains negative numbers ");
-        exit(1);
-    }
+
 }
+for(i=0;i<5;i++)
+    {
+        if(pro[i].burst_time<0)
+        {
+            printf("file contains negative numbers please write positive numbers on file ");
+            exit(1);
+        }
+    }
 fclose(fp);
 }
 int main()
 {
     int choice;
+    char q='a';
     struct process exp;
-    printf("1 for reading the existing cpu Burst\n2 for writing new cpu Bursts\nenter your choice : ");
-    scanf("%d",&choice);
+    while(q!='q')
+    {
+        printf("1 for reading the existing cpu Burst\n2 for writing new cpu Bursts\nenter your choice : ");
+        scanf("%d",&choice);
         switch(choice)
         {
       case 1:
@@ -87,15 +99,21 @@ int main()
         waiting_time();
         turnaround_time();
         print();
+        printf("to exit press q to continue press any key : ");
+        fflush(stdin);
+        scanf("%c",&q);
         break;
       case 2:
         write();
-        printf("if you want to display SHORTEST JOB FIRST press 1:");
-        scanf("%d",&choice);
+        printf("to exit press q to continue press any key : ");
+        fflush(stdin);
+        scanf("%c",&q);
         break;
       default:
-          printf("wrong input");
-        exit(1);
+          printf("wrong input\n");
+          printf("to exit press q to continue press any key : ");
+          fflush(stdin);
+          scanf("%c",&q);
         }
-    
+    }
 }
