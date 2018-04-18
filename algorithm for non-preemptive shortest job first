@@ -1,0 +1,7 @@
+First arrange(sort) all the processes according to burst time in ascending order using any sorting technique.
+Then apply FCFS algorithm.
+FCFS :
+Here arrival time is 0 for all process.
+Turn around time of a process is equal to sum of burst time of previous processes and its burst time.
+Wait time of process is equal to turn around time of the previous process
+Wait time[n]=turnaround time[n-1]
