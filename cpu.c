@@ -1,6 +1,5 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<conio.h>
 struct process
 {
     int burst_time,wait_time,turn_time,process_id;
@@ -100,20 +99,18 @@ int main()
         turnaround_time();
         print();
         printf("to exit press q to continue press any key : ");
-        fflush(stdin);
-        scanf("%c",&q);
+        scanf(" %c",&q);//space is used brfore %c to ignore spaces or new line characters
         break;
       case 2:
         write();
         printf("to exit press q to continue press any key : ");
-        fflush(stdin);
-        scanf("%c",&q);
+        scanf(" %c",&q);//space is used brfore %c to ignore spaces or new line characters
         break;
       default:
           printf("wrong input\n");
           printf("to exit press q to continue press any key : ");
-          fflush(stdin);
-          scanf("%c",&q);
+          scanf(" %c",&q);//space is used brfore %c to ignore spaces or new line characters
+          break;
         }
     }
 }
